@@ -1,0 +1,72 @@
+@url = http://localhost:5000
+@storyId = 00000000-0000-0000-0000-000000000000
+@userId = 00000000-0000-0000-0000-000000000000
+@accessToken = secret
+@refreshToken = secret
+
+###
+GET {{url}}
+
+###
+GET {{url}}/stories
+
+###
+GET {{url}}/stories/{{storyId}}
+
+###
+POST {{url}}/stories
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "title": "Story 1",
+  "text": "Lorem ipsum",
+  "tags": ["tag1", "tag2"]
+}
+
+###
+POST {{url}}/sign-up
+Content-Type: application/json
+
+{
+  "email": "user1@trill.com",
+  "name": "user1",
+  "password": "secret",
+  "role": "user",
+  "permissions": []
+}
+
+###
+POST {{url}}/sign-in
+Content-Type: application/json
+
+{
+  "name": "user1",
+  "password": "secret",
+}
+
+###
+GET {{url}}/me
+Authorization: Bearer {{accessToken}}
+
+###
+GET {{url}}/users/{{userId}}
+Authorization: Bearer {{accessToken}}
+
+
+###
+POST {{url}}/tokens/use
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+###
+POST {{url}}/tokens/revoke
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
