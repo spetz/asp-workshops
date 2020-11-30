@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Trill.Application.Services;
 using Trill.Core.Services;
 using Trill.Infrastructure.Auth;
 using Trill.Infrastructure.Mongo;
@@ -13,6 +14,7 @@ namespace Trill.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddSingleton<IServiceId, ServiceId>();
             services.AddMemoryCache();
             services.AddSingleton<IRng, Rng>();
             services.AddMongo();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Trill.Application;
+using Trill.Application.Services;
 using Trill.Infrastructure;
 
 namespace Trill.Api
@@ -12,6 +13,7 @@ namespace Trill.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization();
             services.AddControllers();
             services.AddApplication();
             services.AddInfrastructure();
@@ -27,6 +29,8 @@ namespace Trill.Api
                 
                 endpoints.MapGet("api", async context =>
                 {
+                    var serviceId1 = context.RequestServices.GetRequiredService<IServiceId>();
+                    var serviceId2 = context.RequestServices.GetRequiredService<IServiceId>();
                     await context.Response.WriteAsync("Trill API");
                 });
 
