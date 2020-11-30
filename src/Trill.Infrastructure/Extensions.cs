@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Trill.Application.Services;
 using Trill.Core.Services;
 using Trill.Infrastructure.Auth;
+using Trill.Infrastructure.Logging;
 using Trill.Infrastructure.Mongo;
 using Trill.Infrastructure.Services;
 
@@ -31,12 +32,15 @@ namespace Trill.Infrastructure
             services.AddMongo();
             services.AddAuth();
             services.Decorate<IStoryService, StoryServiceCacheDecorator>();
+            services.AddSingleton<LoggingMiddleware>();
             
             return services;
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
+            app.UseMiddleware<LoggingMiddleware>();
+            
             return app;
         }
         

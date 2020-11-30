@@ -15,7 +15,8 @@ namespace Trill.Api
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
                 .UseSerilog((context, logger) =>
                 {
-                    logger.MinimumLevel.Information().WriteTo.Console();
+                    logger
+                        .MinimumLevel.Information().WriteTo.Console();
                 });
     }
 }
