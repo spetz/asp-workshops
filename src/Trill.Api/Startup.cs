@@ -29,8 +29,7 @@ namespace Trill.Api
                 
                 endpoints.MapGet("api", async context =>
                 {
-                    var serviceId1 = context.RequestServices.GetRequiredService<IServiceId>();
-                    var serviceId2 = context.RequestServices.GetRequiredService<IServiceId>();
+                    var serviceId2 = context.RequestServices.GetRequiredService<IServiceId>().GetId();
                     await context.Response.WriteAsync("Trill API");
                 });
 

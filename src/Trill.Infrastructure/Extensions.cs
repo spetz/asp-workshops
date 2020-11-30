@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Trill.Application.Services;
 using Trill.Core.Services;
@@ -14,7 +15,10 @@ namespace Trill.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IServiceId, ServiceId>();
+            // services.AddHostedService<NotificationJob>();
+            
             services.AddMemoryCache();
             services.AddSingleton<IRng, Rng>();
             services.AddMongo();
