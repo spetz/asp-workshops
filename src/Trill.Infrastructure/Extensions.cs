@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trill.Application.Services;
 using Trill.Core.Services;
@@ -15,6 +16,12 @@ namespace Trill.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+                services.Configure<ApiOptions>(configuration.GetSection("api"));
+            }
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IServiceId, ServiceId>();
             // services.AddHostedService<NotificationJob>();
