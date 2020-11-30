@@ -45,6 +45,13 @@ namespace Trill.Api
                     context.Response.ContentType = "application/json";
                     await context.Response.WriteAsync("{}");
                 });
+                
+                endpoints.MapPost("api/stories", async context =>
+                {
+                    var storyId = Guid.NewGuid();
+                    context.Response.Headers.Add("Location", $"api/stories/{storyId}");
+                    context.Response.StatusCode = 201;
+                });
             });
         }
     }
