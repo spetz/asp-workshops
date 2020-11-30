@@ -1,7 +1,7 @@
 @url = http://localhost:5000
-@storyId = 00000000-0000-0000-0000-000000000000
-@userId = 00000000-0000-0000-0000-000000000000
-@accessToken = secret
+@storyId = d3db3092-1b17-40e5-b680-af4f78e01d9a
+@userId = c18c39f8-4459-4037-ae33-1d7ac1437a83
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMThjMzlmODQ0NTk0MDM3YWUzMzFkN2FjMTQzN2E4MyIsInVuaXF1ZV9uYW1lIjoiYzE4YzM5Zjg0NDU5NDAzN2FlMzMxZDdhYzE0MzdhODMiLCJqdGkiOiI4MDE2NTdjNy0zMDE0LTQ2YzItYmNlNy0yMDRkMTYwYTI0ZjIiLCJpYXQiOiIxNjA2NzQ5ODczNzEwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidXNlciIsIm5iZiI6MTYwNjc0OTg3MywiZXhwIjoxNjA2NzUwMTczLCJpc3MiOiJ0cmlsbCJ9.niaYgNieC3pvDWaXdWQsgm6NhTv4OyGgEcKWuhka9Wg
 @refreshToken = secret
 
 ###
@@ -11,10 +11,10 @@ GET {{url}}
 GET {{url}}/stories
 
 ###
-GET {{url}}/api/stories/{{storyId}}
+GET {{url}}/stories/{{storyId}}
 
 ###
-POST {{url}}/api/stories
+POST {{url}}/stories
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 

@@ -17,7 +17,12 @@ namespace Trill.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthorization();
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+                .ConfigureApplicationPartManager(manager =>
+                {
+                    manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
+                })
+                .AddNewtonsoftJson();
             services.AddApplication();
             services.AddInfrastructure();
         }
@@ -25,7 +30,9 @@ namespace Trill.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseInfrastructure();
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

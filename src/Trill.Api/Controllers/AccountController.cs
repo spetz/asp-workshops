@@ -32,5 +32,11 @@ namespace Trill.Api.Controllers
         [HttpGet("me")]
         public async Task<ActionResult<UserDetailsDto>> Me()
             => Ok(await _identityService.GetUserAsync(UserId));
+
+        [HttpGet("secret"), Authorize(Policy = "secret:read")]
+        public ActionResult<string> GetSecret()
+        {
+            return "secret";
+        }
     }
 }

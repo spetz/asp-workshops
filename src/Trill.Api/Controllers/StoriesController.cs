@@ -8,7 +8,7 @@ using Trill.Application.Services;
 
 namespace Trill.Api.Controllers
 {
-    public class StoriesController : BaseController
+    internal class StoriesController : BaseController
     {
         private readonly IStoryService _storyService;
 
@@ -34,7 +34,7 @@ namespace Trill.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(SendStory request)
+        public async Task<ActionResult> Post([FromBody] SendStory request)
         {
             await _storyService.AddAsync(request);
             return CreatedAtAction(nameof(Get), new {storyId = request.Id}, null);

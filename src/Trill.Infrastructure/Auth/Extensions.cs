@@ -28,10 +28,12 @@ namespace Trill.Infrastructure.Auth
             services.AddSingleton<IJwtProvider, JwtProvider>();
             services.AddSingleton<IPasswordService, PasswordService>();
             services.AddSingleton<IPasswordHasher<IPasswordService>, PasswordHasher<IPasswordService>>();
-            services.AddAuthorization(a => a.AddPolicy("users:read", p =>
-            {
-                p.RequireClaim("permissions", "users:read");
-            }));
+
+            services.AddAuthorization(a => a
+                .AddPolicy("secret:read", p =>
+                {
+                    p.RequireClaim("permissions", "secret:read");
+                }));
 
             if (options.AuthenticationDisabled)
             {
