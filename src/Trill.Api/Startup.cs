@@ -20,10 +20,24 @@ namespace Trill.Api
             services.AddControllers().AddNewtonsoftJson();
             services.AddApplication();
             services.AddInfrastructure();
+            services.AddSingleton<DummyMiddleware>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (ctx, next) =>
+            {
+                Console.WriteLine("Middleware 1");
+                await next();
+            });
+            
+            app.Use(async (ctx, next) =>
+            {
+                Console.WriteLine("Middleware 2");
+                await next();
+            });
+
+            app.UseMiddleware<DummyMiddleware>();
             app.UseInfrastructure();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
