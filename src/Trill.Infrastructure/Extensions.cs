@@ -30,6 +30,7 @@ namespace Trill.Infrastructure
             services.AddSingleton<IRng, Rng>();
             services.AddMongo();
             services.AddAuth();
+            services.Decorate<IStoryService, StoryServiceCacheDecorator>();
             
             return services;
         }

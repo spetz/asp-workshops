@@ -11,10 +11,10 @@ GET {{url}}
 GET {{url}}/stories
 
 ###
-GET {{url}}/stories/{{storyId}}
+GET {{url}}/api/stories/{{storyId}}
 
 ###
-POST {{url}}/stories
+POST {{url}}/api/stories
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
